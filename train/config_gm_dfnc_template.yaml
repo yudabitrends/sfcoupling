@@ -1,0 +1,121 @@
+analysis:
+  out_dir: /home/users/ybi3/sfcoupling/results/gm_dfnc
+  methods: [nuclear_norm, linear_optshrink]
+  seeds: [42]
+  ranks: [eff, 5, 10, 20]
+  n_perm: 1000
+  n_boot: 250
+  mantel_perm: 1000
+  rank_curve_max: 40
+  local_state_k: 10
+  prediction_alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+  clinical_Cs: [0.01, 0.1, 1.0, 10.0, 100.0]
+  clinical_boot: 500
+  primary_method: nuclear_norm
+  primary_rank: eff
+  primary_solution: K5_ref
+
+map_sources:
+  sz:
+    config: /home/users/ybi3/sfcoupling/train/config_baselines.yaml
+    methods: [nuclear_norm, linear_optshrink]
+    seeds: [42]
+    dynamic_datasets:
+      dataset1:
+        static_dataset: dataset1
+        report_name: DS1
+        windows_path: /path/to/sz_dataset1_windows.npy
+        metadata_path: /path/to/sz_dataset1_windows.tsv
+        subject_id_col: SubjectID
+        window_idx_col: window_idx
+        solutions:
+          - label: K4_ref
+            K: 4
+            state_label_col: state_k4
+            centroids_path: /path/to/sz_dataset1_k4_centroids.npy
+            report_name: DS1
+            windowing_label: wl22_step1
+          - label: K5_ref
+            K: 5
+            state_label_col: state_k5
+            centroids_path: /path/to/sz_dataset1_k5_centroids.npy
+            report_name: DS1
+            windowing_label: wl22_step1
+          - label: K6_ref
+            K: 6
+            state_label_col: state_k6
+            centroids_path: /path/to/sz_dataset1_k6_centroids.npy
+            report_name: DS1
+            windowing_label: wl22_step1
+          - label: K7_ref
+            K: 7
+            state_label_col: state_k7
+            centroids_path: /path/to/sz_dataset1_k7_centroids.npy
+            report_name: DS1
+            windowing_label: wl22_step1
+      dataset2:
+        static_dataset: dataset2
+        report_name: DS2
+        windows_path: /path/to/sz_dataset2_windows.npy
+        metadata_path: /path/to/sz_dataset2_windows.tsv
+        subject_id_col: SubjectID
+        window_idx_col: window_idx
+        solutions:
+          - label: K4_ref
+            K: 4
+            state_label_col: state_k4
+            centroids_path: /path/to/sz_dataset2_k4_centroids.npy
+            report_name: DS2
+            windowing_label: wl22_step1
+          - label: K5_ref
+            K: 5
+            state_label_col: state_k5
+            centroids_path: /path/to/sz_dataset2_k5_centroids.npy
+            report_name: DS2
+            windowing_label: wl22_step1
+          - label: K6_ref
+            K: 6
+            state_label_col: state_k6
+            centroids_path: /path/to/sz_dataset2_k6_centroids.npy
+            report_name: DS2
+            windowing_label: wl22_step1
+          - label: K7_ref
+            K: 7
+            state_label_col: state_k7
+            centroids_path: /path/to/sz_dataset2_k7_centroids.npy
+            report_name: DS2
+            windowing_label: wl22_step1
+
+  ukb:
+    config: /home/users/ybi3/sfcoupling/train/config_baselines_ukb.yaml
+    methods: [nuclear_norm, linear_optshrink]
+    seeds: [42]
+    dynamic_datasets:
+      dataset1:
+        static_dataset: dataset1
+        report_name: UKB-internal
+        windows_path: /path/to/ukb_dataset1_windows.npy
+        metadata_path: /path/to/ukb_dataset1_windows.tsv
+        subject_id_col: eid
+        window_idx_col: window_idx
+        solutions:
+          - label: K5_ref
+            K: 5
+            state_label_col: state_k5
+            centroids_path: /path/to/ukb_dataset1_k5_centroids.npy
+            report_name: UKB-internal
+            windowing_label: wl22_step1
+      dataset2:
+        static_dataset: dataset2
+        report_name: UKB
+        windows_path: /path/to/ukb_dataset2_windows.npy
+        metadata_path: /path/to/ukb_dataset2_windows.tsv
+        subject_id_col: eid
+        window_idx_col: window_idx
+        solutions:
+          - label: K5_ref
+            K: 5
+            state_label_col: state_k5
+            centroids_path: /path/to/ukb_dataset2_k5_centroids.npy
+            report_name: UKB
+            windowing_label: wl22_step1

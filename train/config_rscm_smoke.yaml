@@ -1,0 +1,30 @@
+# RSCM smoke-test config — W1 pipeline verification.
+# Goal: confirm train/run_rscm.py runs end-to-end on DS1 + DS2 external,
+# produces an effective rank in the 3-8 range (narrative continuity with
+# the main-paper nuclear-norm finding), and reports Fisher-z pc_r2(k20)
+# within 1 SE of the published Nuclear Norm baseline (0.058).
+#
+# Light settings: 3 seeds, smaller lambda grid. Keep under ~30 min on one node.
+
+paths:
+  aligned_features_dir: /home/users/ybi3/sfcoupling/aligned_features
+  splits_dir: /home/users/ybi3/sfcoupling/splits
+id_column: SubjectID
+results_dir: /home/users/ybi3/sfcoupling/results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  # SPD reconstruction requires valid Fisher-z values: use the `_resid`
+  # variant (residualized but not z-scored). R^2 is scale-invariant so
+  # numbers stay directly comparable to the main paper's published value.
+  x_variant: resid
+  y_variant: resid
+  fisher_z: true
+  metric: log_euclidean   # parsed downstream when AIRM / BW variants land
+  # lambda_grid: null      # fall back to RSFE default (0.001 ... 5.0)
+
+target_pca:
+  enabled: true
+  k: 20

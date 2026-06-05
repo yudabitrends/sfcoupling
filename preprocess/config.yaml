@@ -1,0 +1,68 @@
+# Multimodal GM-FNC Preprocessing Configuration
+# For szdataset_modified.h5: use same path for dataset1 (key=train) and dataset2 (key=test)
+
+dataset1:
+  gm_path: /home/users/ybi3/data/szdataset_modified.h5
+  gm_key: train
+  gm_column: sMRIPath
+  gm_format: h5
+  fnc_path: /home/users/ybi3/data/szdataset_modified.h5
+  fnc_key: train
+  fnc_column: sFNC
+  fnc_format: h5
+  covariates_path: /home/users/ybi3/data/szdataset_modified.h5
+  covariates_key: train
+  covariates_format: h5
+
+dataset2:
+  gm_path: /home/users/ybi3/data/szdataset_modified.h5
+  gm_key: test
+  gm_column: sMRIPath
+  gm_format: h5
+  fnc_path: /home/users/ybi3/data/szdataset_modified.h5
+  fnc_key: test
+  fnc_column: sFNC
+  fnc_format: h5
+  covariates_path: /home/users/ybi3/data/szdataset_modified.h5
+  covariates_key: test
+  covariates_format: h5
+
+id_column: SubjectID
+id_normalization: {}
+
+residualization:
+  residualize_x: true
+  residualize_y: true
+  residualize_train_only: true
+  covariate_cols: [Age, Gender, Site, total_gm]
+
+scaling:
+  zscore_train_only: true
+
+fnc:
+  n_components: 53
+  apply_fisher_z: true
+  extract_upper_triangle: true
+
+gm:
+  representation: roi
+  roi_atlas_path: /data/qneuromark/Network_templates/NeuroMark3/T1.nii
+  roi_labels_path: /data/qneuromark/Network_templates/NeuroMark3/T1.txt
+  roi_threshold: 0.0
+
+split:
+  train_frac: 0.7
+  val_frac: 0.15
+  stratify_by: Diagnosis
+  seed: 42
+
+output_dir: aligned_features
+splits_dir: splits
+logs_dir: logs
+
+# Optional: when GM from NIfTI, fail fast on missing files (true) or exclude subject (false)
+gm_fail_on_missing_nifti: false
+
+verify:
+  strict_roi: true
+  allow_voxelwise: false

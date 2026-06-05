@@ -1,0 +1,49 @@
+analysis:
+  out_dir: /home/users/ybi3/sfcoupling/results/gm_dfnc_ukb_pilot
+  methods: [nuclear_norm]
+  seeds: [42]
+  ranks: [eff, 5, 10, 20]
+  n_perm: 200
+  n_boot: 100
+  mantel_perm: 200
+  rank_curve_max: 30
+  local_state_k: 10
+  prediction_alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+  clinical_Cs: [0.01, 0.1, 1.0, 10.0, 100.0]
+  clinical_boot: 200
+  primary_method: nuclear_norm
+  primary_rank: eff
+  primary_solution: K5_ref
+
+map_sources:
+  ukb:
+    config: /home/users/ybi3/sfcoupling/train/config_baselines_ukb.yaml
+    methods: [nuclear_norm]
+    seeds: [42]
+    dynamic_datasets:
+      dataset1:
+        static_dataset: dataset1
+        report_name: UKB-internal-pilot
+        windows_path: /home/users/ybi3/sfcoupling/results/gm_dfnc_ukb_pilot_inputs/dataset1_windows.npy
+        metadata_path: /home/users/ybi3/sfcoupling/results/gm_dfnc_ukb_pilot_inputs/dataset1_windows.tsv
+        subject_id_col: eid
+        window_idx_col: window_idx
+        solutions:
+          - label: K5_ref
+            K: 5
+            state_label_col: state_k5
+            report_name: UKB-internal-pilot
+            windowing_label: wl22_step1_pilot
+      dataset2:
+        static_dataset: dataset2
+        report_name: UKB-external-pilot
+        windows_path: /home/users/ybi3/sfcoupling/results/gm_dfnc_ukb_pilot_inputs/dataset2_windows.npy
+        metadata_path: /home/users/ybi3/sfcoupling/results/gm_dfnc_ukb_pilot_inputs/dataset2_windows.tsv
+        subject_id_col: eid
+        window_idx_col: window_idx
+        solutions:
+          - label: K5_ref
+            K: 5
+            state_label_col: state_k5
+            report_name: UKB-external-pilot
+            windowing_label: wl22_step1_pilot

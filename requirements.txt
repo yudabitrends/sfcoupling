@@ -1,0 +1,15 @@
+# Pinned ranges reflect the environment used for the NeuroImage submission
+# (Python 3.8+; tested with the versions in the second column). If you upgrade
+# a dependency outside the lower bound, re-run scripts/smoketest_synthetic.py
+# to verify the pipeline still produces matching outputs on synthetic data.
+#
+# Package                  Tested version (submission environment)
+numpy>=1.20,<2.0         # 1.24.4
+scipy>=1.7,<2.0          # 1.10.1
+pandas>=1.3,<3.0         # 1.5.x
+scikit-learn>=1.0,<2.0   # 1.3.2
+torch>=2.0,<3.0          # 2.4.1+cu121
+PyYAML>=5.4
+tables>=3.6
+nibabel>=3.2
+pytest>=7.0

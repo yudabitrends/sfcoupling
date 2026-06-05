@@ -1,0 +1,25 @@
+paths:
+  aligned_features_dir: /data/users1/ybi/cVAE/ukb_features/aligned
+  splits_dir: /data/users1/ybi/cVAE/ukb_features/aligned/splits
+id_column: eid
+results_dir: /home/users/ybi3/sfcoupling/results/ukb
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+ridge:
+  alphas: [0.001, 0.01, 0.1, 1, 10, 100]
+
+mlp:
+  hidden_dims: [256, 128]
+  dropout: 0.1
+  activation: relu
+  epochs: 200
+  batch_size: 256
+  lr: 0.001
+  weight_decay: 0.00001
+  patience: 20
+
+target_pca:
+  enabled: true
+  k: 20

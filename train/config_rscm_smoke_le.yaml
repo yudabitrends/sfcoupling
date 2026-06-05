@@ -1,0 +1,23 @@
+# RSCM Log-Euclidean smoke — key test for G1 gate.
+# LE tangent is isometric to Euclidean on log-matrices, so the exp-map
+# compression that cost us 84% of signal under AIRM should be absent.
+# Target: DS1 >= 0.054 AND DS2 >= 0.030 (head-to-head Euclidean NN).
+
+paths:
+  aligned_features_dir: /home/users/ybi3/sfcoupling/aligned_features
+  splits_dir: /home/users/ybi3/sfcoupling/splits
+id_column: SubjectID
+results_dir: /home/users/ybi3/sfcoupling/results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  x_variant: default       # z-scored X (numerical stability)
+  y_variant: raw           # raw Fisher-z for PD SPD reconstruction
+  fisher_z: true
+  metric: logE             # Log-Euclidean tangent (switch from AIRM)
+
+target_pca:
+  enabled: true
+  k: 20

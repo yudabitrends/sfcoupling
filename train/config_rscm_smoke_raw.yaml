@@ -1,0 +1,27 @@
+# RSCM smoke on RAW Y (no residualization) — validates the tangent-space
+# fit works when input Fisher-z forms a proper correlation matrix.
+# The residualization story becomes a RSCM paper contribution: "harmonize
+# in tangent space, not edge space", deferred to Task #5 integration.
+
+paths:
+  aligned_features_dir: /home/users/ybi3/sfcoupling/aligned_features
+  splits_dir: /home/users/ybi3/sfcoupling/splits
+id_column: SubjectID
+results_dir: /home/users/ybi3/sfcoupling/results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  # Y_raw preserves PD (Gram matrix of normalized ICs); X_default is
+  # z-scored for numerical stability — same convention as main paper's
+  # Nuclear Norm baseline. Residualization (for Age/Gender/total_gm) moves
+  # from edge space to tangent space as the RSCM method novelty.
+  x_variant: default
+  y_variant: raw
+  fisher_z: true
+  metric: log_euclidean
+
+target_pca:
+  enabled: true
+  k: 20

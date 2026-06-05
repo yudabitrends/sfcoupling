@@ -1,0 +1,26 @@
+# RSCM Log-Euclidean + tangent-space harmonization.
+# Thread-2 core contribution: residualize Age/Gender in SPD tangent space
+# (after log-map, before Nuclear Norm fit), preserving PD-ness while
+# removing the same confounds the main paper removes in edge space.
+# Expected: DS2 pc_r2 should move from 0.004 toward 0.036+ baseline.
+
+paths:
+  aligned_features_dir: /home/users/ybi3/sfcoupling/aligned_features
+  splits_dir: /home/users/ybi3/sfcoupling/splits
+id_column: SubjectID
+results_dir: /home/users/ybi3/sfcoupling/results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  x_variant: default       # z-scored X
+  y_variant: raw           # raw Fisher-z so SPD is PD
+  fisher_z: true
+  metric: logE
+  harmonize: true
+  harmonize_cols: [Age, Gender]
+
+target_pca:
+  enabled: true
+  k: 20

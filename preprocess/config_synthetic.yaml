@@ -1,0 +1,50 @@
+# Synthetic dry-run config - uses CSV format
+dataset1:
+  gm_path: preprocess/tests/fixtures/ds1_gm.csv
+  gm_format: csv
+  fnc_path: preprocess/tests/fixtures/ds1_fnc.csv
+  fnc_format: csv
+  covariates_path: preprocess/tests/fixtures/ds1_covariates.csv
+  covariates_format: csv
+
+dataset2:
+  gm_path: preprocess/tests/fixtures/ds2_gm.csv
+  gm_format: csv
+  fnc_path: preprocess/tests/fixtures/ds2_fnc.csv
+  fnc_format: csv
+  covariates_path: preprocess/tests/fixtures/ds2_covariates.csv
+  covariates_format: csv
+
+id_column: SubjectID
+residualization:
+  residualize_x: true
+  residualize_y: true
+  residualize_train_only: true
+  covariate_cols: [Age, Gender]
+
+scaling:
+  zscore_train_only: true
+
+fnc:
+  n_components: 6
+  apply_fisher_z: false
+  extract_upper_triangle: false
+
+gm:
+  representation: roi
+  roi_atlas_path: /data/qneuromark/Network_templates/NeuroMark3/T1.nii
+  roi_labels_path: /data/qneuromark/Network_templates/NeuroMark3/T1.txt
+  roi_threshold: 0.0
+
+split:
+  train_frac: 0.7
+  val_frac: 0.15
+  stratify_by: Diagnosis
+  seed: 42
+
+output_dir: aligned_features_synthetic
+logs_dir: logs
+
+verify:
+  strict_roi: true
+  allow_voxelwise: false

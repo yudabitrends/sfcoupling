@@ -1,0 +1,26 @@
+paths:
+  aligned_features_dir: /home/users/ybi3/sfcoupling/aligned_features
+  splits_dir: /home/users/ybi3/sfcoupling/splits
+id_column: SubjectID
+results_dir: /home/users/ybi3/sfcoupling/results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+ridge:
+  alphas: [0.001, 0.01, 0.1, 1, 10, 100]
+
+mlp:
+  hidden_dims: [256, 128]
+  dropout: 0.1
+  activation: relu
+  epochs: 200
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.00001
+  patience: 20
+
+target_pca:
+  enabled: true
+  k: 20
+

@@ -1,0 +1,56 @@
+# Use after: conda run -n preprocess_h5 python preprocess/convert_h5_to_csv.py --h5 ... --out ...
+
+dataset1:
+  gm_path: /home/users/ybi3/data/converted/gm_paths_train.csv
+  gm_format: csv_paths
+  gm_path_column: sMRIPath
+  fnc_path: /home/users/ybi3/data/converted/fnc_train.csv
+  fnc_format: csv
+  covariates_path: /home/users/ybi3/data/converted/covariates_train.csv
+  covariates_format: csv
+
+dataset2:
+  gm_path: /home/users/ybi3/data/converted/gm_paths_test.csv
+  gm_format: csv_paths
+  gm_path_column: sMRIPath
+  fnc_path: /home/users/ybi3/data/converted/fnc_test.csv
+  fnc_format: csv
+  covariates_path: /home/users/ybi3/data/converted/covariates_test.csv
+  covariates_format: csv
+
+id_column: SubjectID
+residualization:
+  residualize_x: true
+  residualize_y: true
+  residualize_train_only: true
+  covariate_cols: [Age, Gender, Site]
+
+scaling:
+  zscore_train_only: true
+
+fnc:
+  n_components: 53
+  apply_fisher_z: false
+  extract_upper_triangle: false
+  force_fisher_z: true
+
+gm:
+  representation: roi
+  roi_atlas_path: /data/qneuromark/Network_templates/NeuroMark3/T1.nii
+  roi_labels_path: /data/qneuromark/Network_templates/NeuroMark3/T1.txt
+  roi_threshold: 0.0
+
+split:
+  train_frac: 0.7
+  val_frac: 0.15
+  stratify_by: Diagnosis
+  seed: 42
+
+output_dir: aligned_features
+splits_dir: splits
+logs_dir: logs
+gm_fail_on_missing_nifti: false
+
+verify:
+  strict_roi: true
+  allow_voxelwise: false

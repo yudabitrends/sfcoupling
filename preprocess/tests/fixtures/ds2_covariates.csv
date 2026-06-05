@@ -1,0 +1,9 @@
+SubjectID,Age,Gender,Diagnosis
+sub_012,21,0,0
+sub_013,69,0,0
+sub_014,41,1,1
+sub_015,58,0,1
+sub_016,40,0,0
+sub_017,34,1,0
+sub_018,58,1,0
+sub_019,53,1,0
