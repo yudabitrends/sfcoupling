@@ -1,0 +1,24 @@
+# NC Phase 1.1 smoke: RSCM LE + tangent-space harmonization on UKB N=1,079
+# Based on best MIA smoke (config_rscm_smoke_le_harmon.yaml)
+# Goal: confirm pipeline works on UKB; obtain a baseline pc_r2 for G1'.
+
+paths:
+  aligned_features_dir: data/aligned_features_ukb1079
+  splits_dir: data/splits_ukb1079
+id_column: SubjectID
+results_dir: results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  x_variant: default       # z-scored GM (fit on DS1-train)
+  y_variant: raw           # raw Fisher-z so SPD reconstruction is PD
+  fisher_z: true
+  metric: logE
+  harmonize: true
+  harmonize_cols: [Age, Gender]
+
+target_pca:
+  enabled: true
+  k: 20

@@ -1,0 +1,25 @@
+# NC Phase 1 canonical baseline: RSCM LE + tangent-space harmonization + λ=0.3.
+# Decided 2026-04-19 based on λ-sweep (see natcomm/results/rscm_ukb1079_lam_*/).
+# k=3 DS1 pc_r² = 0.128 at λ=0.3; λ≥1 collapses operator to rank ≤2 and halves k=3 signal.
+# Use this config for every per-cohort RSCM run going forward.
+
+paths:
+  aligned_features_dir: data/aligned_features_ukb1079
+  splits_dir: data/splits_ukb1079
+id_column: SubjectID
+results_dir: results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  x_variant: default       # z-scored GM (fit on DS1-train)
+  y_variant: raw           # raw Fisher-z so SPD reconstruction is PD
+  fisher_z: true
+  metric: logE
+  harmonize: true
+  harmonize_cols: [Age, Gender]
+
+target_pca:
+  enabled: true
+  k: 3                     # PRIMARY: universal 3-PC code

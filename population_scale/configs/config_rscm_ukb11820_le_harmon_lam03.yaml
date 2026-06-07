@@ -1,0 +1,24 @@
+# NC Phase 1 W3 precursor: RSCM LE + harmon + λ=0.3 on UKB 11,820 (31% of full UKB)
+# Uses the 20 pre-extracted feature chunks aggregated via prepare_ukb11820_from_chunks.py.
+# Expected: tighter CIs than N=1,079 baseline; k=3 signal ~0.10-0.15 if 1,079 was representative.
+
+paths:
+  aligned_features_dir: data/aligned_features_ukb11820
+  splits_dir: data/splits_ukb11820
+id_column: SubjectID
+results_dir: results
+dataset2_external_use_all: true
+seed: 42
+use_cuda: false
+
+rscm:
+  x_variant: default
+  y_variant: raw
+  fisher_z: true
+  metric: logE
+  harmonize: true
+  harmonize_cols: [Age, Gender]
+
+target_pca:
+  enabled: true
+  k: 3
