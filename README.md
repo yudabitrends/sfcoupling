@@ -29,6 +29,14 @@ scripts/       analyses and figures for the paper, including:
   reviewer_revision_figures/         figure generators (figA–figG)
 ```
 
+## Population-scale follow-up
+
+`population_scale/` contains the analysis and figure code for the follow-up paper **"A
+surrogate-floor control for cross-cohort comparison of structure–function coupling subspaces"**
+(NeuroImage), which scales RSCM to a UK Biobank *N*-ladder (1,079 → 11,820 → 37,775) and adds the
+matrix-normal surrogate-floor control for cross-cohort subspace comparison. It reuses the
+`train/run_rscm.py` runner. See `population_scale/README.md`.
+
 ## Reproducibility without data
 
 The full analyses require the cohort feature matrices (not distributable; see below). The

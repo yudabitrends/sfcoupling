@@ -10,6 +10,11 @@ results/
 logs/
 aligned_features/
 splits/
+# Population-scale follow-up: keep code only (generated features/splits/figures stay local)
+data/
+population_scale/**/data/
+population_scale/figures/*.pdf
+population_scale/figures/*.png
 # Python
 __pycache__/
 *.pyc
